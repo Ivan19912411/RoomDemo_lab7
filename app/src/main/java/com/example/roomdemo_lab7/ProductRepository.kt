@@ -24,13 +24,13 @@ class ProductRepository(private val productDao: ProductDao) {
 
     fun deleteProduct(name: String) {
         coroutineScope.launch(Dispatchers.IO) {
-            productDao.deleteProduct(name)
+            productDao.deleteProduct(name.trim())
         }
     }
 
     fun findProduct(name: String) {
         coroutineScope.launch(Dispatchers.Main) {
-            searchResults.value = asyncFind(name).await()
+            searchResults.value = asyncFind(name.trim()).await()
         }
     }
 

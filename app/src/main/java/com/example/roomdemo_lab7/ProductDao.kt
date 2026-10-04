@@ -11,10 +11,10 @@ interface ProductDao {
     @Insert
     fun insertProduct(product: Product)
 
-    @Query("SELECT * FROM products WHERE productName = :name")
+    @Query("SELECT * FROM products WHERE productName LIKE '%' || :name || '%'")
     fun findProduct(name: String): List<Product>
 
-    @Query("DELETE FROM products WHERE productName = :name")
+    @Query("DELETE FROM products WHERE productName LIKE '%' || :name || '%'")
     fun deleteProduct(name: String)
 
     @Query("SELECT * FROM products")
